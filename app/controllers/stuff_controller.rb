@@ -1,2 +1,0 @@
-class StuffController < ApplicationController
-end
