@@ -1,3 +1,1 @@
-# SalesLoft Leadpass Application
-## Backend
-
+# Rails Tutorial
