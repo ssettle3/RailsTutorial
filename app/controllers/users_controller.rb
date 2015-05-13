@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
+  	binding.pry
   end
 
   def new
@@ -15,6 +16,15 @@ class UsersController < ApplicationController
   		redirect_to @user
   	else 
   		render 'new'
+  	end
+  end
+
+  def edit
+  	@user = User.find(params[:id])
+  	if @user.update_attributes(user_params)
+  		#handle update_attributes
+  	else
+  		render 'edit'
   	end
   end
 

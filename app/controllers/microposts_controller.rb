@@ -1,15 +1,21 @@
 class MicropostsController < ApplicationController
   before_action :set_micropost, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show]
 
   # GET /microposts
   # GET /microposts.json
   def index
     @microposts = Micropost.all
+    render :index
   end
 
   # GET /microposts/1
   # GET /microposts/1.json
   def show
+    respond_to do |format|
+        format.html { render :show, notice: 'get fuckd' }
+        format.json { render json: @micropost, status: :ok }
+      end
   end
 
   # GET /microposts/new
@@ -67,8 +73,13 @@ class MicropostsController < ApplicationController
       @micropost = Micropost.find(params[:id])
     end
 
+    def set_user
+      @user = User.find(@micropost.user_id)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def micropost_params
       params.require(:micropost).permit(:content, :user_id)
     end
+
 end

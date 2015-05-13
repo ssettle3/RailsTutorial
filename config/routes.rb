@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :todos
+
   get 'sessions/new'
 
   get 'users/new'
@@ -13,7 +15,11 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
 
   resources :microposts
-  resources :users
+  resources :todos
+  
+  resources :users do
+    resources :microposts
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
